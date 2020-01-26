@@ -4,6 +4,7 @@ import com.waes.diff.core.dtos.GetDiffDto;
 import com.waes.diff.core.model.Content;
 import com.waes.diff.core.usecases.GetContent;
 import com.waes.diff.entrypoints.BadRequestEndpointException;
+import com.waes.diff.entrypoints.ForbiddenEndpointException;
 import com.waes.diff.entrypoints.GetDiffEndpoint;
 import com.waes.diff.entrypoints.NotFoundEndpointException;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,16 @@ public class DefaultGetDiffEndpoint implements GetDiffEndpoint {
             throw new NotFoundEndpointException("id " + rm.getId() + " not found");
         }
 
-        return GetDiffDto.builder().result(optContent.get().getResult()).build();
+        Content c = optContent.get();
+        if (!c.isComplete()) {
+            if (StringUtils.isBlank(c.getLeftContent())) {
+                throw new ForbiddenEndpointException("left content is missing");
+            } else {
+                throw new ForbiddenEndpointException("right content is missing");
+            }
+        }
+
+        return GetDiffDto.builder().result(c.getResult()).build();
     }
 
     private static void validateModel(RequestModel rm) {

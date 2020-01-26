@@ -52,7 +52,7 @@ public class UploadContentTest {
 
         //Finally find it again and verify the response
         resp = findById(id);
-        Assert.assertEquals(HttpStatus.SC_OK, resp.getStatusLine().getStatusCode());
+        Assert.assertEquals(HttpStatus.SC_FORBIDDEN, resp.getStatusLine().getStatusCode());
     }
 
     @Test
@@ -78,11 +78,11 @@ public class UploadContentTest {
 
         //Finally find it again and verify the response
         resp = findById(id);
-        Assert.assertEquals(HttpStatus.SC_OK, resp.getStatusLine().getStatusCode());
+        Assert.assertEquals(HttpStatus.SC_FORBIDDEN, resp.getStatusLine().getStatusCode());
     }
 
     @Test
-    public void testUploadContent() throws IOException {
+    public void testUploadContent() throws IOException, InterruptedException {
         random = new Random();
         //Get a new id
         int statusCode = 0;

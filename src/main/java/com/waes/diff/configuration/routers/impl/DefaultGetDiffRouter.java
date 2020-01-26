@@ -2,7 +2,9 @@ package com.waes.diff.configuration.routers.impl;
 
 import com.waes.diff.configuration.routers.BaseRouter;
 import com.waes.diff.core.dtos.GetDiffDto;
+import com.waes.diff.core.exceptions.ForbiddenException;
 import com.waes.diff.core.exceptions.NotFoundException;
+import com.waes.diff.entrypoints.ForbiddenEndpointException;
 import com.waes.diff.entrypoints.GetDiffEndpoint;
 import com.waes.diff.entrypoints.NotFoundEndpointException;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +36,8 @@ public class DefaultGetDiffRouter implements BaseRouter<GetDiffDto> {
             return getDiffEndpoint.execute(GetDiffEndpoint.RequestModel.builder().id(id).build());
         } catch (NotFoundEndpointException e) {
             throw new NotFoundException(e.getMessage());
+        } catch (ForbiddenEndpointException e) {
+            throw new ForbiddenException(e.getMessage());
         }
-
     }
 }
