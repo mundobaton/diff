@@ -1,4 +1,4 @@
-#Diff API
+# Diff API
 Provides endpoints for uploading and comparing strings.
 As a requirement these strings must be base64 encoded.
 
@@ -10,7 +10,7 @@ The string comparison may have different results according the cases where:
 
 * If both strings are not equal but have same length, then the API will inform where the differences are and the differences lengths.
 
-##Endpoints
+## Endpoints
 1- Upload content: This endpoint will upload a base64 encoded string given an id and a side (left/right)
 
 Method: **PUT**
@@ -47,18 +47,18 @@ Returns:
 - HttpStatus 404 when the provided id does not exist.
 - HttpStatus 500 on internal server errors.
 
-##Requisites for running on local
+## Requisites for running on local
 The API holds the content into a MySQL instance, the database configuration is within the file `database.properties`
 Once you have your database configured, just simple run the executable Main.java file, which will instantiate a new server and wire everything for you.
 
-###Tests
+### Tests
 The project contains both unit and integration tests.
 Unit tests are within the usecases package. This package holds our business logic.
 
 Integration tests are within the integration package.
 In there you will find a file which initializes the server and performs various tests asserting the response.
 
-###Dependencies
+### Dependencies
 
 * Java8
 * Spark routing: http://sparkjava.com/
