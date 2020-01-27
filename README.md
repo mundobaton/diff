@@ -28,9 +28,9 @@ Body:
 
 Returns:
 
-- HttpStatus 200 with body message: **"content saved successfully"** when the content has been uploaded without issues.
-- HttpStatus 400 with a detailed message when a validation error occurs.
-- HttpStatus 500 on internal server errors
+- HttpStatus **200** with body message: **"content saved successfully"** when the content has been uploaded without issues.
+- HttpStatus **400** with a detailed message when a validation error occurs.
+- HttpStatus **500** on internal server errors
 
 2- Get Diff: This endpoints retrieves the content comparison among two encoded strings uploaded previously.
 This endpoint requires both left/right contents to be uploaded, if it's not the case, then it will inform which side is missing.
@@ -42,10 +42,10 @@ URL:
 ``http://hostname:port/v1/diff/:id``
 
 Returns:
-- HttpStatus 200 with a detailed result when the content has been diffed successfully.
-- HttpStatus 403 when the provided id exist but a side is still missing.
-- HttpStatus 404 when the provided id does not exist.
-- HttpStatus 500 on internal server errors.
+- HttpStatus **200** with a detailed result when the content has been diffed successfully.
+- HttpStatus **403** when the provided id exist but a side is still missing.
+- HttpStatus **404** when the provided id does not exist.
+- HttpStatus **500** on internal server errors.
 
 ## Requisites for running on local
 The API holds the content into a MySQL instance, the database configuration is within the file `database.properties`
